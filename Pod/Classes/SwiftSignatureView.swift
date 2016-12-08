@@ -13,6 +13,8 @@ public protocol SwiftSignatureViewDelegate: class {
     func swiftSignatureViewDidTapInside(_ view: SwiftSignatureView)
 
     func swiftSignatureViewDidPanInside(_ view: SwiftSignatureView)
+    
+    func swiftSignatureViewFinishDidPanInside(_ view: SwiftSignatureView)
 
 }
 
@@ -144,6 +146,9 @@ open class SwiftSignatureView: UIView {
                 previousWidth = currentWidth
                 self.setNeedsDisplay()
             }
+        case .ended:
+            self.delegate?.swiftSignatureViewFinishDidPanInside(self)
+            break
             
         default:
             break
