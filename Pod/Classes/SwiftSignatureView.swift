@@ -21,7 +21,7 @@ public protocol SwiftSignatureViewDelegate: class {
 /// A lightweight, fast and customizable option for capturing fluid, variable-stroke-width signatures within your app.
 open class SwiftSignatureView: UIView {
     // MARK: Public Properties
-
+    open weak var imageView: UIImageView?
     open weak var delegate: SwiftSignatureViewDelegate?
     
     /**
@@ -84,7 +84,8 @@ open class SwiftSignatureView: UIView {
     }
     
     override public init(frame: CGRect) {
-        super.init(frame: frame)        
+        super.init(frame: frame)
+        self.imageView = UIImageView(frame:self.bounds)
         initialize()
     }
 
@@ -98,9 +99,24 @@ open class SwiftSignatureView: UIView {
         self.addGestureRecognizer(pan)
     }
     
+    func setupExistingImage(data:Data) {
+        if let imageView = self.imageView {
+            let image = UIImage(data:data)
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
+        } else {
+            self.imageView = UIImageView(frame:self.bounds)
+            let image = UIImage(data:data)
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
+        }
+    }
+    
     func tap(_ tap:UITapGestureRecognizer) {
         let rect = self.bounds
-        
+        if let imageView = self.imageView {
+            imageView.removeFromSuperview()
+        }
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
         if(signature == nil) {
             signature = UIGraphicsGetImageFromCurrentImageContext()
