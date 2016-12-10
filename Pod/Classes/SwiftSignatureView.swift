@@ -107,8 +107,8 @@ open class SwiftSignatureView: UIView {
         } else {
             self.imageView = UIImageView(frame:self.bounds)
             let image = UIImage(data:data)
-            imageView.image = image
-            imageView.contentMode = .scaleAspectFit
+            imageView?.image = image
+            imageView?.contentMode = .scaleAspectFit
         }
     }
     
