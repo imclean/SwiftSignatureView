@@ -70,6 +70,9 @@ open class SwiftSignatureView: UIView {
     // MARK: Public Methods
     open func clear() {
         signature = nil
+        if let imageView = self.imageView {
+            imageView.removeFromSuperview()
+        }
         self.setNeedsDisplay()
     }
     
