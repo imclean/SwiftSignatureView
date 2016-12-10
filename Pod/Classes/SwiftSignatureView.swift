@@ -99,7 +99,7 @@ open class SwiftSignatureView: UIView {
         self.addGestureRecognizer(pan)
     }
     
-    func setupExistingImage(data:Data) {
+    public func setupExistingImage(data:Data) {
         if let imageView = self.imageView {
             let image = UIImage(data:data)
             imageView.image = image
