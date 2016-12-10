@@ -21,7 +21,7 @@ public protocol SwiftSignatureViewDelegate: class {
 /// A lightweight, fast and customizable option for capturing fluid, variable-stroke-width signatures within your app.
 open class SwiftSignatureView: UIView {
     // MARK: Public Properties
-    open weak var imageView: UIImageView?
+    public var imageView: UIImageView?
     open weak var delegate: SwiftSignatureViewDelegate?
     
     /**
