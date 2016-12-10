@@ -134,6 +134,9 @@ open class SwiftSignatureView: UIView {
     }
     
     func pan(_ pan:UIPanGestureRecognizer) {
+        if let imageView = self.imageView {
+            imageView.removeFromSuperview()
+        }
         switch(pan.state) {
         case .began:
             previousPoint = pan.location(in: self)
